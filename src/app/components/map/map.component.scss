@@ -1,0 +1,42 @@
+.title{
+  min-height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #fed801;
+}
+
+#searchWrap.fixed-top{
+  top: 80px;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, 0);
+
+  button.dropdown-toggle, span.pointer{
+    background-color: black;
+    color: #fff;
+  }
+
+  span.pointer{
+    cursor: pointer;
+  }
+}
+
+.map-container {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+
+  .map-frame {
+    height: 100%;
+    #map {
+      height: 100%;
+    }
+  }
+}
+
+

@@ -1,0 +1,99 @@
+$mdWidth: 30vw;
+$smWidth: 70vw;
+
+:host{
+  position: absolute;
+  top: 50px;
+  right: 0;
+  z-index: 10;
+  width: 0;
+  height: calc(100% - 5vh);
+  background-color: #fff;
+  border: 1px solid #666;
+}
+
+:host.slideOpen{
+  width: $mdWidth;
+  animation-name: slideOpen;
+  animation-duration: 1s;
+}
+
+:host.slideClose{
+  width: 0px;
+  color: transparent;
+  animation-name: slideClose;
+  animation-duration: 1s;
+}
+
+.siderWrap{
+  position: relative;
+  height: 100%;
+
+  .lArrow{
+    color: blue;
+    background-color: #fff;
+    padding: 0 .5rem;
+    position: absolute;
+    top: 40vh;
+    right: 100%;
+    border: 1px solid #666;
+    z-index: 999;
+  }
+
+  .rArrow{
+    transform: rotate(180deg);
+  }
+
+  .listWrap{
+    height: 100%;
+    overflow-y: auto;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  :host.slideOpen{
+    width: $smWidth;
+    animation-name: slideSmOpen;
+  }
+
+  :host.slideClose{
+    width: 0px;
+    animation-name: slideSmClose;
+    animation-duration: 1s;
+  }
+}
+
+@keyframes slideOpen{
+  from{
+    width: 0px;
+    color: transparent;
+  }to{
+    width: $mdWidth;
+    color: #000;
+  }
+}
+
+@keyframes slideSmOpen{
+  from{
+    width: 0px;
+  }to{
+    width: $smWidth;
+  }
+}
+
+@keyframes slideClose{
+  from{
+    width: $mdWidth;
+  }to{
+    width: 0px;
+  }
+}
+
+@keyframes slideSmClose{
+  from{
+    width: $smWidth;
+  }to{
+    width: 0px;
+  }
+}
