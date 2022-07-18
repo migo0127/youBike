@@ -4,9 +4,11 @@
         (click)="activeSider(lArrow)">❮</span>
 
   <ng-container *ngIf="stopResult; else noData">
-    <div class="container listWrap">
+    <div class="container listWrap d-flex flex-column">
       <div *ngFor="let stop of stopResult; let i = index">
-        <div class="list-group list-group-flush">
+        <div  class="list-group list-group-flush"
+              title="雙擊選取"
+              (dblclick)="onClickSideStation(stop)">
           <a class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">
@@ -32,9 +34,14 @@
                             >
               可還數量: {{ stop.AvailableReturnBikes }}
             </p>
-            <small>{{ stop.UpdateTime }}</small>
+            <small>{{ stop.UpdateTime | date: 'yyyy-MM-dd hh:mm:ss' }}</small>
           </a>
         </div>
+      </div>
+      <div *ngIf="isDesignatedStation"
+            class="text-right">
+        <a class="card-link pr-3"
+            (click)="onClickSideBack(isDesignatedStation)">❮❮ 返回</a>
       </div>
     </div>
   </ng-container>

@@ -200,5 +200,10 @@ export class MapComponent implements AfterViewInit {
     this.initLayer();
   }
 
+  // 側邊欄返回選定縣市所有站點資料
+  public clickSideBack(): void{
+    this.getStationByCity();
+  }
+
 }
 

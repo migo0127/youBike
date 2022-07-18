@@ -9,7 +9,7 @@
           class="dropdown-menu">
       <li  *ngFor="let city of cityList"
           class="dropdown-item"
-          (click)="selectedCity = city"
+          (click)="selectedCity = city; districtInput = ''"
           >
         {{ city.name }}
     </li>
@@ -42,5 +42,6 @@
 
 <app-sider  *ngIf="stopResult"
             [stopResult]="stopResult"
-            (clickSideStation)="clickSideStation($event)">
+            (clickSideStation)="clickSideStation($event)"
+            (clickSideBack)="clickSideBack()">
 </app-sider>

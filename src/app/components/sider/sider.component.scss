@@ -7,7 +7,7 @@ $smWidth: 70vw;
   right: 0;
   z-index: 10;
   width: 0;
-  height: calc(100% - 5vh);
+  height: calc(100% - 5vh - 3.5px);
   background-color: #fff;
   border: 1px solid #666;
 }
@@ -47,6 +47,14 @@ $smWidth: 70vw;
   .listWrap{
     height: 100%;
     overflow-y: auto;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    .list-group, .card-link{
+      cursor: pointer;
+    }
+    .card-link{
+      text-decoration: underline;
+    }
   }
 
 }
