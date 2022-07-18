@@ -80,9 +80,9 @@ export class MapComponent implements AfterViewInit {
         error: () => {
           // 因API有查詢次數的限制，若已達限制次數則使用假資料JSON
           this.youBickService.getStationByData(this.selectedCity.id.toLocaleLowerCase()).subscribe((res: BikeStation[]) => {
-            this.stopResult = res;
+            this.stopResult = this.fuzzySearchByData(input?.trim(), res);
             this.bindCityStopAvailability();
-            alert('很抱歉，已超過每日使用次數，暫時無法使用關字查詢，請隔日在使用，謝謝！ \n\n Search rate limit exceeded');
+            // alert('很抱歉，已超過每日使用次數，暫時無法使用關字查詢，請隔日在使用，謝謝！ \n\n Search rate limit exceeded');
           });
         },
         complete: () => {
@@ -140,6 +140,17 @@ export class MapComponent implements AfterViewInit {
     });
   }
 
+  // 假資料進行模糊搜尋
+  private fuzzySearchByData(keyword: string, stopRes: BikeStation[]): BikeStation[] {
+    const bikeStation: BikeStation[] = [];
+    for(let stop of stopRes){
+      if(stop.StationName.Zh_tw.includes(keyword)){
+        bikeStation.push(stop);
+      }
+    }
+    return bikeStation;
+  }
+
   // 設置圖標
   private initLayer(): void {
     // 清除上次圖標
@@ -180,6 +191,13 @@ export class MapComponent implements AfterViewInit {
     });
     // 將圖標添加到map圖層裡
     this.map?.addLayer(this.markers);
+  }
+
+  // 定位到側邊欄點擊的站點位置
+  public clickSideStation(stop: BikeStation): void{
+    if(this.stopResult.length === 1 && this.stopResult[0].StationID === stop.StationID) return;
+    this.stopResult = [stop];
+    this.initLayer();
   }
 
 }

@@ -41,5 +41,6 @@
 </div>
 
 <app-sider  *ngIf="stopResult"
-            [stopResult]="stopResult">
+            [stopResult]="stopResult"
+            (clickSideStation)="clickSideStation($event)">
 </app-sider>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BikeStation } from 'src/app/model';
 
 @Component({
@@ -10,6 +10,7 @@ import { BikeStation } from 'src/app/model';
 export class SiderComponent implements OnInit {
 
   @Input() stopResult!: BikeStation[];
+  @Output() clickSideStation: EventEmitter<BikeStation> = new EventEmitter<BikeStation>();
 
   constructor(private elmf: ElementRef) {
    }
@@ -28,7 +29,11 @@ export class SiderComponent implements OnInit {
       this.elmf.nativeElement.classList.remove('slideClose');
       arrow.classList.add('rArrow');
     }
-    // this.elmf.nativeElement.style.left = this.elmf.nativeElement.style.left === '-15vw' ? '0' : '-15vw';
+  }
+
+  // 當雙擊側邊欄中的隨意一個站點訊息，會定位到該指定站點
+  public onClickSideStation(stop: BikeStation): void{
+    this.clickSideStation.emit(stop);
   }
 
 }
